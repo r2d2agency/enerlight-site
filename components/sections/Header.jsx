@@ -40,7 +40,7 @@ export default function Header({ homePath = "" }) {
   }}>
     <div className="wrap header-inner">
       <a href={homePath + "#inicio"} className="brand" aria-label="Enerlight, início" onClick={closeNavigation}><img src="/images/logo.png" alt="Enerlight Soluções em Iluminação" width="240" height="60" /></a>
-      <button ref={menuButton} className="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded={open} onClick={() => open ? closeNavigation() : setOpen(true)}><span className="menu-icon" aria-hidden="true" />{open ? "Fechar" : "Menu"}</button>
+      <button ref={menuButton} className="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded={open} onClick={() => open ? closeNavigation() : setOpen(true)}><span className="menu-icon" aria-hidden="true" /><span className="menu-label">{open ? "Fechar" : "Menu"}</span></button>
       <nav className={open ? "nav nav--open" : "nav"} id="main-navigation" aria-label="Navegação principal">
         <a href={homePath + "#inicio"} className="nav-home" onClick={closeNavigation}>Home</a>
         <details className="nav-segments" ref={segmentMenu}>
