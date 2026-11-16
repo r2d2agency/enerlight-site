@@ -2,97 +2,9 @@
 
 import { useState } from "react";
 import { Kicker } from "../ui";
+import { brands } from "../brands";
 
-const brands = [
-  [
-    "BR",
-    "br.webp"
-  ],
-  [
-    "Shell",
-    "shell-2.webp"
-  ],
-  [
-    "JBS",
-    "jbs.webp"
-  ],
-  [
-    "Petrobras",
-    "petrobras.webp"
-  ],
-  [
-    "São Paulo FC",
-    "sao-paulo.webp"
-  ],
-  [
-    "Constroeste",
-    "constroeste.webp"
-  ],
-  [
-    "Ipiranga",
-    "ipiranga.webp"
-  ],
-  [
-    "Leroy Merlin",
-    "leroy.webp"
-  ],
-  [
-    "TotalEnergies",
-    "totalenergies.webp"
-  ],
-  [
-    "OXXO",
-    "oxxo.webp"
-  ],
-  [
-    "ALE",
-    "ale.webp"
-  ],
-  [
-    "Raízen",
-    "raizen.webp"
-  ],
-  [
-    "Texaco",
-    "texaco.webp"
-  ],
-  [
-    "am/pm",
-    "am-pm.webp"
-  ],
-  [
-    "Minerva Foods",
-    "minerva.webp"
-  ],
-  [
-    "Solfarma",
-    "solfarma.webp"
-  ],
-  [
-    "Loja do Mecânico",
-    "mecanico.webp"
-  ],
-  [
-    "Droga Raia",
-    "droga-raia.webp"
-  ],
-  [
-    "Damha",
-    "damha.webp"
-  ],
-  [
-    "Entrevias",
-    "entrevias.webp"
-  ],
-  [
-    "Kryspy",
-    "kryspy.webp"
-  ],
-  [
-    "Shell Select",
-    "select.webp"
-  ]
-];
+
 
 export default function Brands() {
   const [paused, setPaused] = useState(false);
