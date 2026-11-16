@@ -15,13 +15,13 @@ export default function Products() {
         <p>Utilizamos LEDs OSRAM e drivers Philips em modelos de nossas linhas, com componentes selecionados para oferecer qualidade e confiabilidade.</p>
         <Action href="#catalogos">Conheça nossas linhas</Action>
       </div>
-      <img className="product-photo" src="/images/luminaria.png" alt="Luminária LED industrial Enerlight" width="700" height="420" loading="lazy" />
+      <img className="product-photo" src="/images/luminaria.webp" alt="Luminária LED industrial Enerlight" width="700" height="420" loading="lazy" />
     </div>
     <div className="featured-products">
       <div className="wrap">
         <div className="section-copy"><Kicker>Conheça os modelos</Kicker><h2>Luminárias em destaque.</h2></div>
         <div className="product-grid">{highlights.map(({ id, name, category, description, pdf }) => <article className="featured-product interactive-card" key={id}>
-          <div className="featured-product-media"><img src={`/images/produtos/${id}.jpg`} alt={`Luminária Enerlight ${name}`} width="360" height="210" loading="lazy" /></div>
+          <div className="featured-product-media"><img src={`/images/produtos/${id}.webp`} alt={`Luminária Enerlight ${name}`} width="360" height="210" loading="lazy" /></div>
           <div className="featured-product-copy"><p className="article-label">{category}</p><h3>{name}</h3><p>{description}</p>
           <Action href={`/catalogos/enerlight-${pdf}.pdf#page=3`} variant="dark">Ver especificações</Action></div>
         </article>)}</div>

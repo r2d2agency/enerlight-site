@@ -15,7 +15,7 @@ export default function Contact({ showCta = true } = {}) {
     </div>}
     <div className="footer-details">
       <div className="wrap footer-grid">
-        <a className="brand footer-brand" href="/#inicio" aria-label="Enerlight, início"><img src="/images/logo.png" alt="Enerlight Soluções em Iluminação" width="200" height="50" loading="lazy" /></a>
+        <a className="brand footer-brand" href="/#inicio" aria-label="Enerlight, início"><img src="/images/logo.webp" alt="Enerlight Soluções em Iluminação" width="200" height="50" loading="lazy" /></a>
         <section aria-labelledby="footer-address">
           <h2 id="footer-address">Endereço</h2>
           <address><a href={map}>{address}<br />{city}<br />CEP 15061-430</a></address>

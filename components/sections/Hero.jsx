@@ -29,7 +29,7 @@ const homeSlides = [
   {
     "title": "São José do Rio Preto",
     "category": "Iluminação pública",
-    "photo": "/images/obras/rio-preto.jpg",
+    "photo": "/images/obras/rio-preto.webp",
     "position": "center 54%",
     "href": "#obra-rio-preto",
     "headline": "Mais luz para as vias",
@@ -41,7 +41,7 @@ const homeSlides = [
   {
     "title": "Grandes redes de atacado",
     "category": "Iluminação comercial",
-    "photo": "/images/supermercados.jpg",
+    "photo": "/images/supermercados.webp",
     "position": "center 45%",
     "href": "#obra-atacado",
     "illustrative": true,
@@ -54,7 +54,7 @@ const homeSlides = [
   {
     "title": "Posto Chiesa JK",
     "category": "Pista e conveniência",
-    "photo": "/images/obras/posto-chiesa.jpg",
+    "photo": "/images/obras/posto-chiesa.webp",
     "position": "center 57%",
     "href": "#obra-postos",
     "headline": "Da pista à conveniência,",

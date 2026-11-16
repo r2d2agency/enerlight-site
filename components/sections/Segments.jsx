@@ -18,7 +18,7 @@ export default function Segments() {
         <a className="action action--outline" href="#mercados">Explorar segmentos <Arrow /></a>
       </div>
       <div className="market-grid" id="mercados" tabIndex={-1}>{segments.map(([id, title, description]) => <details key={id} id={`segmento-${id}`} name="mercado" className="market">
-        <summary style={{ "--market-photo": `url(/images/${id}.jpg)` }}><span>{title}</span><i><Arrow /></i></summary>
+        <summary style={{ "--market-photo": `url(/images/${id}.webp)` }}><span>{title}</span><i><Arrow /></i></summary>
         <div className="market-detail"><p>{description}</p><a href={id === "postos" ? "/segmentos/petro" : "#contato"}>{id === "postos" ? "Conhecer a Linha Petro" : "Conversar sobre meu projeto"} <Arrow /></a></div>
       </details>)}</div>
     </div>

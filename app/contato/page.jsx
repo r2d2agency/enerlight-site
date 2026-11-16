@@ -1,6 +1,12 @@
 import { Action } from "../../components/ui";
 
-export const metadata = { title: "Solicitar orçamento | Enerlight" };
+import { pageMeta } from "../../lib/seo";
+
+export const metadata = pageMeta({
+  title: "Solicitar orçamento de iluminação LED | Enerlight",
+  description: "Peça um orçamento de luminárias LED ou de projeto luminotécnico. Fale com a Enerlight pelo telefone (17) 3353-9050, por e-mail ou WhatsApp.",
+  path: "/contato"
+});
 
 export default async function ContactPage({ searchParams }) {
   const { assunto } = await searchParams;

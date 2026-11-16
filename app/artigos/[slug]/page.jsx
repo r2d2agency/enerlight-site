@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { articles } from "../../../components/articles";
 import { Action, Kicker } from "../../../components/ui";
+import { JsonLd, pageMeta, siteUrl } from "../../../lib/seo";
 
 export function generateStaticParams() {
   return articles.map(({ slug }) => ({ slug }));
@@ -9,7 +10,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const article = articles.find((item) => item.slug === slug);
-  return article ? { title: `${article.title} | Enerlight`, description: article.description } : {};
+  return article ? pageMeta({ title: `${article.title} | Enerlight`, description: article.description, path: `/artigos/${slug}`, type: "article" }) : {};
 }
 
 export default async function ArticlePage({ params }) {
@@ -17,7 +18,21 @@ export default async function ArticlePage({ params }) {
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
 
+  const articleData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    inLanguage: "pt-BR",
+    mainEntityOfPage: `${siteUrl}/artigos/${slug}`,
+    image: `${siteUrl}/og/enerlight.jpg`,
+    author: { "@id": `${siteUrl}/#empresa` },
+    publisher: { "@id": `${siteUrl}/#empresa` },
+    citation: article.source.href
+  };
+
   return <main className="wrap inner-page technical-article">
+    <JsonLd data={articleData} />
     <Action href="/#artigos" variant="dark" arrow={false}>Voltar aos artigos</Action>
     <article>
       <Kicker>{article.label}</Kicker><h1>{article.title}</h1>

@@ -57,3 +57,11 @@ Defina `ENERLIGHT_EAD_URL` nas variáveis de ambiente do Easypanel com a URL HTT
 Os PDFs oficiais ficam em `public/catalogos` e as capas ficam em `public/images/catalogos`.
 
 Os 22 logotipos são os exibidos no site oficial da Enerlight. A imagem da engenheira é ilustrativa, e os produtos em destaque usam imagens dos catálogos oficiais.
+
+## SEO e compartilhamento
+
+O endereço público usado no sitemap (`/sitemap.xml`), no `robots.txt`, no endereço oficial de cada página e nos cartões de compartilhamento vem da variável `SITE_URL` (padrão: `https://www.enerlight.com.br`). Se o domínio mudar, defina `SITE_URL` no Easypanel e faça um novo deploy.
+
+A imagem de compartilhamento fica em `public/og/enerlight.jpg` (1200×630). Os dados da empresa para o Google (endereço, telefone, e-mail) ficam em `lib/seo.js`.
+
+As imagens do site estão em WebP, no tamanho em que são exibidas. Ao adicionar fotos novas, prefira WebP com no máximo 1600px de largura.

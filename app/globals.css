@@ -44,7 +44,7 @@ img { display: block; max-width: 100%; }
 .action--outline:hover, .action--dark:hover { background: #eaf0f8; }
 .actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .hero { position: relative; min-height: clamp(405px, 39.5vw, 640px); isolation: isolate; overflow: hidden; background: #05234b; color: white; }
-.hero-photo { position: absolute; z-index: -2; inset: 0; background: url('/images/hero.jpg') right 51% / 75% auto no-repeat; animation: arrive-photo 1.3s ease-out both; }
+.hero-photo { position: absolute; z-index: -2; inset: 0; background: url('/images/hero.webp') right 51% / 75% auto no-repeat; animation: arrive-photo 1.3s ease-out both; }
 .hero::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,#021633 1%,#031b3d 21%,#031b3df5 28%,#031b3d66 49%,transparent 73%), linear-gradient(180deg,#041c3f 0%,transparent 35%); }
 .hero-inner { position: relative; padding: clamp(87px, 8.6vw, 136px) 1.15% clamp(43px, 4.4vw, 74px); animation: rise .65s ease-out both; }
 .kicker { display: flex; align-items: center; gap: 10px; font-weight: 780; text-transform: uppercase; letter-spacing: .22em; font-size: clamp(9px, .9vw, 13px); line-height: 1.3; }
@@ -93,7 +93,7 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 .projects-inner > img { width: 100%; height: auto; aspect-ratio: 2.75; object-fit: cover; border-radius: 15px; }
 .projects h2 { max-width: 23ch; text-wrap: initial; }
 .about { position: relative; isolation: isolate; overflow: hidden; background: #eaf1f8; }
-.about-photo { position: absolute; z-index: -2; inset: 0; background: url('/images/fachada.jpg') right 55% / 64% auto no-repeat; }
+.about-photo { position: absolute; z-index: -2; inset: 0; background: url('/images/fachada.webp') right 55% / 64% auto no-repeat; }
 .about::before { position: absolute; content: ""; z-index: -1; inset: 0; background: linear-gradient(90deg,#eaf1f8 29%,#eaf1f8 37%,#eaf1f800 56%); }
 .about-inner { min-height: clamp(195px, 18.5vw, 285px); padding: clamp(18px, 1.7vw, 30px) 1%; display: flex; align-items: center; }
 .about .section-copy { max-width: min(45%, 500px); }
@@ -114,7 +114,7 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 .inner-page h2 { font-size: 30px; margin-bottom: 12px; }
 .inner-page section { border-top: 1px solid #d4deeb; margin-top: 28px; padding-top: 24px; }
 .inner-page p { margin-bottom: 14px; }
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .header-inner { min-height: 68px; gap: 12px; }
   .menu-toggle { display: inline-flex; align-items: center; margin-left: auto; background: #061d40; border: 1px solid #8293ad; color: white; font: inherit; border-radius: 8px; padding: 8px 12px; }
   .nav { display: none; position: absolute; top: 62px; right: 4.5%; width: min(91%, 330px); padding: 12px; background: #061d40; border: 1px solid #446185; border-radius: 12px; box-shadow: 0 10px 20px #00122b77; }
@@ -251,7 +251,7 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 .catalog-copy h3 { font-size: clamp(20px, 2vw, 26px); margin: 0; line-height: 1.05; }
 .catalog-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
 .catalog-actions .action { padding-inline: 9px; font-size: 12px; min-height: 40px; }
-@media (min-width: 1181px) {
+@media (min-width: 1281px) {
   .nav { gap: clamp(10px, 1.2vw, 22px); }
 }
 @media (max-width: 1000px) {
@@ -276,10 +276,10 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 .nav-segment-list a { display: block; padding: 9px 10px; border-radius: 6px; }
 .nav-segment-list a:hover { background: #ffffff18; }
 .market:target { outline: 3px solid var(--yellow); outline-offset: 3px; }
-@media (min-width: 1181px) {
+@media (min-width: 1281px) {
   .nav { gap: clamp(9px, 1.1vw, 20px); }
 }
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .nav { max-height: calc(100svh - 74px); overflow-y: auto; }
   .nav-segments summary { font-size: 16px; padding: 10px 12px; }
   .nav-segment-list { position: static; min-width: 0; padding: 0 0 0 12px; background: transparent; box-shadow: none; }
@@ -357,7 +357,7 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .product-photo:hover { scale: 1.035; }
 }
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .header .nav { top: calc(100% + 6px); right: 0; max-height: calc(100svh - 94px); }
   .header .nav > a::after, .nav-segments summary::after { display: none; }
   .menu-toggle { gap: 7px; }
@@ -611,7 +611,7 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 .hero-carousel[data-dragging] { cursor: grabbing; user-select: none; }
 
 /* Menu do celular: nasce do botão ☰ e volta para ele ao fechar */
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .header .nav { transform-origin: top right; transition: opacity .2s ease, scale .28s cubic-bezier(.2,.9,.25,1), filter .28s ease, display .28s allow-discrete; opacity: 0; scale: .94; filter: blur(4px); }
   .header .nav--open { animation: none; opacity: 1; scale: 1; filter: none; }
   @starting-style { .header .nav--open { opacity: 0; scale: .94; filter: blur(4px); } }
@@ -628,3 +628,22 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
 .section-copy p:not(.kicker) { line-height: 1.45; }
 .hero-carousel .hero-inner > p:not(.kicker) { line-height: 1.38; }
 .case-copy p, .market-detail p { line-height: 1.42; }
+
+/* Faixa de marcas: botão de pausa (no celular não há "passar o mouse") */
+.brand-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand-pause { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border: 1px solid #b8c9dd; border-radius: 10px; background: #fff; color: var(--ink); font-family: inherit; font-size: 14px; font-weight: 700; line-height: 1; }
+.brand-pause:hover { background: #eaf0f8; }
+.brand-pause:active { scale: .97; transition: scale 100ms ease-out; }
+.brand-pause span { font-size: 12px; }
+.brand-window--paused .brand-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .brand-pause { display: none; } }
+
+/* Menu do computador: aparece a partir de 1281px (abaixo disso, menu ☰) e nunca com texto menor que 14px */
+@media (min-width: 1281px) {
+  .nav a, .nav-segments summary { font-size: clamp(14px, 1.12vw, 16px); }
+}
+/* Entre 1181 e 1280px o menu vira ☰, mas a seção de segmentos mantém o layout de duas colunas */
+@media (min-width: 1181px) and (max-width: 1280px) {
+  .segments-layout { grid-template-columns: minmax(184px, .98fr) 3fr; }
+  .segments h2 { max-width: 8ch; }
+}

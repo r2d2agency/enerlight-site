@@ -19,7 +19,7 @@ export default function Catalogs() {
       <ul className="catalog-grid">{catalogs.map(({ id, title }) => {
         const pdf = `/catalogos/enerlight-${id}.pdf`;
         return <li key={id} className="catalog-card">
-          <img src={`/images/catalogos/${id}.jpg`} alt="" width="215" height="300" loading="lazy" />
+          <img src={`/images/catalogos/${id}.webp`} alt="" width="215" height="300" loading="lazy" />
           <div className="catalog-copy">
             <h3>{title}</h3>
             <div className="catalog-actions">

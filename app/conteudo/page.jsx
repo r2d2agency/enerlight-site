@@ -1,6 +1,12 @@
 import { Action } from "../../components/ui";
 
-export const metadata = { title: "Conteúdo | Enerlight" };
+import { pageMeta } from "../../lib/seo";
+
+export const metadata = pageMeta({
+  title: "Catálogos, projetos e conteúdo técnico | Enerlight",
+  description: "Acesse os catálogos das linhas de luminárias LED, conheça projetos realizados e fale com a equipe técnica da Enerlight.",
+  path: "/conteudo"
+});
 
 export default function ContentPage() {
   return <main className="wrap inner-page">

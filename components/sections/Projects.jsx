@@ -2,9 +2,9 @@ import { Action, Kicker } from "../ui";
 
 const projects = [
   { id: "maracana", name: "Maracanã", category: "Iluminação esportiva", photo: "obras/maracana.webp", text: "Projetores LED para a iluminação esportiva do estádio." },
-  { id: "rio-preto", name: "São José do Rio Preto", category: "Iluminação pública", photo: "obras/rio-preto.jpg", text: "Iluminação da alça Jordão Reis e aplicação ornamental na Represa Municipal." },
-  { id: "atacado", name: "Grandes redes de atacado", category: "Iluminação comercial", photo: "supermercados.jpg", text: "Soluções para corredores, áreas de exposição e espaços operacionais.", illustrative: true },
-  { id: "postos", name: "Posto Chiesa JK", category: "Postos de combustíveis", photo: "obras/posto-chiesa.jpg", text: "Iluminação do posto e da loja de conveniência." },
+  { id: "rio-preto", name: "São José do Rio Preto", category: "Iluminação pública", photo: "obras/rio-preto.webp", text: "Iluminação da alça Jordão Reis e aplicação ornamental na Represa Municipal." },
+  { id: "atacado", name: "Grandes redes de atacado", category: "Iluminação comercial", photo: "supermercados.webp", text: "Soluções para corredores, áreas de exposição e espaços operacionais.", illustrative: true },
+  { id: "postos", name: "Posto Chiesa JK", category: "Postos de combustíveis", photo: "obras/posto-chiesa.webp", text: "Iluminação do posto e da loja de conveniência." },
 ];
 
 export default function Projects() {

@@ -5,11 +5,16 @@ import Reveal from "../../../components/Reveal";
 import Contact from "../../../components/sections/Contact";
 import { Action, Kicker } from "../../../components/ui";
 
-export const metadata = { title: "Linha Petro | Enerlight", description: "Luminárias LED e projetos luminotécnicos para postos de combustíveis, marquises e lojas de conveniência." };
+import { pageMeta } from "../../../lib/seo";
+export const metadata = pageMeta({
+  title: "Linha Petro: iluminação LED para postos de combustíveis | Enerlight",
+  description: "Luminárias LED e projetos luminotécnicos para pista, marquise, loja de conveniência e estacionamento de postos de combustíveis. Fornecedor homologado pelas principais bandeiras.",
+  path: "/segmentos/petro"
+});
 
 const networks = [
-  ["Shell", "shell-2.jpg"], ["Petronas"], ["ALE", "ale.png"],
-  ["Ipiranga", "ipiranga.png"], ["TotalEnergies", "totalenergies.jpg"], ["Rede Graal"], ["BR", "br.png"]
+  ["Shell", "shell-2.webp"], ["Petronas"], ["ALE", "ale.webp"],
+  ["Ipiranga", "ipiranga.webp"], ["TotalEnergies", "totalenergies.webp"], ["Rede Graal"], ["BR", "br.webp"]
 ];
 const areas = [
   ["pista", "Pista", "Marquises e áreas de abastecimento."],
@@ -123,7 +128,7 @@ export default function PetroPage() {
         <h2>Cases da Linha Petro</h2>
         <div className="petro-cases-layout">
           <article className="petro-case-lead">
-            <img src="/images/obras/posto-chiesa.jpg" alt="Iluminação do Posto Chiesa JK" width="750" height="370" loading="lazy" />
+            <img src="/images/obras/posto-chiesa.webp" alt="Iluminação do Posto Chiesa JK" width="750" height="370" loading="lazy" />
             <div className="case-copy"><h3>Posto Chiesa JK</h3><p>Iluminação da pista de abastecimento e da loja de conveniência.</p><Action href={quoteUrl} variant="dark">Pedir projeto para meu posto</Action></div>
           </article>
           <div className="petro-case-list">{cases.map(([name, description]) => <article key={name}><h3>{name}</h3><p>{description}</p></article>)}</div>

@@ -2,7 +2,13 @@ import { redirect } from "next/navigation";
 import { Action } from "../../components/ui";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Universidade Enerlight | Área do instalador" };
+import { pageMeta } from "../../lib/seo";
+
+export const metadata = pageMeta({
+  title: "Universidade Enerlight | Área do instalador",
+  description: "Cursos, vídeos de instalação e manuais para profissionais que trabalham com as luminárias LED Enerlight.",
+  path: "/universidade"
+});
 
 export default function UniversityPage() {
   const login = process.env.ENERLIGHT_EAD_URL;

@@ -1,97 +1,101 @@
+"use client";
+
+import { useState } from "react";
 import { Kicker } from "../ui";
 
 const brands = [
   [
     "BR",
-    "br.png"
+    "br.webp"
   ],
   [
     "Shell",
-    "shell-2.jpg"
+    "shell-2.webp"
   ],
   [
     "JBS",
-    "jbs.png"
+    "jbs.webp"
   ],
   [
     "Petrobras",
-    "petrobras.png"
+    "petrobras.webp"
   ],
   [
     "São Paulo FC",
-    "sao-paulo.png"
+    "sao-paulo.webp"
   ],
   [
     "Constroeste",
-    "constroeste.png"
+    "constroeste.webp"
   ],
   [
     "Ipiranga",
-    "ipiranga.png"
+    "ipiranga.webp"
   ],
   [
     "Leroy Merlin",
-    "leroy.png"
+    "leroy.webp"
   ],
   [
     "TotalEnergies",
-    "totalenergies.jpg"
+    "totalenergies.webp"
   ],
   [
     "OXXO",
-    "oxxo.png"
+    "oxxo.webp"
   ],
   [
     "ALE",
-    "ale.png"
+    "ale.webp"
   ],
   [
     "Raízen",
-    "raizen.png"
+    "raizen.webp"
   ],
   [
     "Texaco",
-    "texaco.jpg"
+    "texaco.webp"
   ],
   [
     "am/pm",
-    "am-pm.png"
+    "am-pm.webp"
   ],
   [
     "Minerva Foods",
-    "minerva.png"
+    "minerva.webp"
   ],
   [
     "Solfarma",
-    "solfarma.png"
+    "solfarma.webp"
   ],
   [
     "Loja do Mecânico",
-    "mecanico.png"
+    "mecanico.webp"
   ],
   [
     "Droga Raia",
-    "droga-raia.png"
+    "droga-raia.webp"
   ],
   [
     "Damha",
-    "damha.png"
+    "damha.webp"
   ],
   [
     "Entrevias",
-    "entrevias.png"
+    "entrevias.webp"
   ],
   [
     "Kryspy",
-    "kryspy.jpg"
+    "kryspy.webp"
   ],
   [
     "Shell Select",
-    "select.jpg"
+    "select.webp"
   ]
 ];
 
 export default function Brands() {
+  const [paused, setPaused] = useState(false);
   return <section className="brands" id="marcas" aria-labelledby="brands-title">
     <div className="wrap">
       <div className="brand-heading">
@@ -100,8 +104,11 @@ export default function Brands() {
           <h2 id="brands-title">Marcas que confiam na Enerlight.</h2>
           <p>Atendemos empresas de diferentes setores e somos fornecedores homologados por grandes redes.</p>
         </div>
+        <button type="button" className="brand-pause" aria-pressed={paused} onClick={() => setPaused(!paused)}>
+          <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>{paused ? "Retomar marcas" : "Pausar marcas"}
+        </button>
       </div>
-      <div className="brand-window" role="region" aria-label="Logotipos de clientes e parceiros" tabIndex={0}>
+      <div className={paused ? "brand-window brand-window--paused" : "brand-window"} role="region" aria-label="Logotipos de clientes e parceiros" tabIndex={0}>
         <div className="brand-track">
           {[false, true].map((duplicate) => <ul className="brand-list" key={String(duplicate)} aria-hidden={duplicate || undefined}>
             {brands.map(([name, file]) => <li key={name}><img src={`/images/marcas/${file}`} alt={duplicate ? "" : name} width="155" height="70" loading={duplicate ? undefined : "lazy"} /></li>)}
