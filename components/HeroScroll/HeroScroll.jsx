@@ -39,6 +39,18 @@ export const ENERLIGHT_SCENES = [
     tagTitle: "Grandes redes de atacado"
   },
   {
+    image: "/images/hero/concessionaria.webp",
+    imagePosition: "center 60%",
+    label: "Concessionárias",
+    title: "Showrooms que encantam,",
+    highlight: "oficinas que produzem.",
+    text: "Iluminação comercial LED para concessionárias: veículos em destaque no showroom, luz uniforme na oficina e mais segurança nas áreas externas.",
+    primary: { label: "Conhecer soluções para concessionárias", href: "#segmento-concessionarias" },
+    secondary: { label: "Projeto luminotécnico", href: "#projeto-luminotecnico" },
+    tagSmall: "Iluminação comercial · Imagem ilustrativa",
+    tagTitle: "Concessionárias e showrooms"
+  },
+  {
     image: "/images/hero/estadio.webp",
     imagePosition: "center 40%",
     label: "Arenas e estádios",

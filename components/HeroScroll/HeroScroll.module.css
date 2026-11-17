@@ -354,7 +354,7 @@
   .pt span { font-size: 12px; white-space: nowrap; visibility: hidden; }
   .ptOn span { visibility: visible; }
   /* Na metade direita da trilha, o nome cresce para a esquerda para não sair da tela */
-  .points > .pt:nth-child(n + 3) span { direction: rtl; }
+  .points > .pt:nth-last-child(-n + 2) span { direction: rtl; }
   /* Deixa espaço para o botão fixo do WhatsApp no canto inferior direito */
   .track { right: 84px; }
   /* "Role para acender": só o ícone, no canto direito, sem cobrir o texto */
