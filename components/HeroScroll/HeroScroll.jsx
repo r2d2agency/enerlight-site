@@ -71,6 +71,12 @@ const FADE = 0.18;
 /** Altura da "pista" de rolagem, em telas por cena. */
 const SCREENS_PER_SCENE = 1.3;
 
+/** Apresentação automática quando a pessoa não rola: tempos em milissegundos. */
+const AUTO_IDLE_MS = 2500;  // parado no topo por este tempo -> começa sozinho
+const AUTO_LIGHT_MS = 1600; // cena acendendo
+const AUTO_HOLD_MS = 4000;  // cena acesa na tela
+const AUTO_MOVE_MS = 900;   // passagem para a próxima cena
+
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -86,19 +92,41 @@ export default function HeroScroll({ scenes = ENERLIGHT_SCENES, eyebrow = "ENGEN
   const meterValRef = useRef(null);
   const bulbRef = useRef(null);
   const [active, setActive] = useState(0);
+  const [canAuto, setCanAuto] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  // Estado da apresentação, fora do React para não re-renderizar a cada quadro
+  const ctrl = useRef({ mode: "scroll", elapsed: 0, hold: false, userPaused: false, start: null });
 
   useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const c = ctrl.current;
     let raf = 0;
     let lastActive = -1;
+    let idleTimer = 0;
+    let lastFrame = 0;
 
-    const render = () => {
-      raf = 0;
+    const SCENE_MS = AUTO_LIGHT_MS + AUTO_HOLD_MS + AUTO_MOVE_MS;
+    const CYCLE_MS = N * SCENE_MS - AUTO_MOVE_MS; // a última cena não "anda": as luzes apagam e o ciclo recomeça
+    const autoG = (t) => {
+      t %= CYCLE_MS;
+      const i = Math.min(N - 1, Math.floor(t / SCENE_MS));
+      const r = t - i * SCENE_MS;
+      if (r < AUTO_LIGHT_MS) return i + 0.5 * (r / AUTO_LIGHT_MS);
+      if (r < AUTO_LIGHT_MS + AUTO_HOLD_MS) return i + 0.5;
+      return i + 0.5 + 0.5 * ((r - AUTO_LIGHT_MS - AUTO_HOLD_MS) / AUTO_MOVE_MS);
+    };
+    const metrics = () => {
       const rect = hero.getBoundingClientRect();
-      const total = hero.offsetHeight - window.innerHeight;
-      const g = Math.min(clamp(-rect.top / total) * N, N - 0.0001);
+      return { rect, total: hero.offsetHeight - window.innerHeight, top: rect.top + window.scrollY };
+    };
+    const scrollG = () => {
+      const { rect, total } = metrics();
+      return Math.min(clamp(-rect.top / total) * N, N - 0.0001);
+    };
+
+    const paint = (g) => {
       let beamOn = 0;
       let beamX = 50;
       let lightNow = 1;
@@ -138,26 +166,107 @@ export default function HeroScroll({ scenes = ENERLIGHT_SCENES, eyebrow = "ENGEN
       if (meterFillRef.current) meterFillRef.current.style.height = `${pct}%`;
       if (meterValRef.current) meterValRef.current.textContent = `LUZ ${pct}%`;
       if (bulbRef.current) bulbRef.current.dataset.on = pct > 60 ? "true" : "false";
-      if (introRef.current) introRef.current.style.opacity = g < 0.05 && !reduce ? "1" : "0";
+      if (introRef.current) introRef.current.style.opacity = c.mode === "scroll" && g < 0.05 && !reduce ? "1" : "0";
     };
+
+    // Modo rolagem: desenha quando a página rola
+    const renderScroll = () => {
+      raf = 0;
+      paint(scrollG());
+    };
+
+    // Modo automático: desenha a cada quadro, avançando pelo tempo
+    const tick = (now) => {
+      raf = 0;
+      if (c.mode !== "auto") return;
+      const dt = lastFrame ? Math.min(100, now - lastFrame) : 0; // aba escondida não acumula tempo
+      lastFrame = now;
+      if (!c.hold && !c.userPaused) c.elapsed += dt;
+      paint(autoG(c.elapsed));
+      raf = requestAnimationFrame(tick);
+    };
+
+    const atTop = () => metrics().rect.top >= -2;
+    const startAuto = () => {
+      if (reduce || c.userPaused || c.mode === "auto" || !atTop()) return;
+      c.mode = "auto";
+      c.elapsed = 0;
+      lastFrame = 0;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(tick);
+    };
+    const armIdle = () => {
+      clearTimeout(idleTimer);
+      if (!reduce && !c.userPaused) idleTimer = window.setTimeout(startAuto, AUTO_IDLE_MS);
+    };
+    // Sai do automático mantendo a cena da tela: leva a rolagem até o ponto equivalente
+    const stopAuto = ({ keepScene = true } = {}) => {
+      if (c.mode !== "auto") return;
+      const g = autoG(c.elapsed);
+      c.mode = "scroll";
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      if (keepScene) {
+        const { top, total } = metrics();
+        // no loop, ao "apagar" a última cena, volta para o começo
+        window.scrollTo({ top: top + total * (Math.min(g, N - 0.5) / N), behavior: "instant" });
+      }
+      paint(scrollG());
+    };
+    c.start = startAuto;
+    c.stop = stopAuto;
+    c.arm = armIdle;
 
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(render);
+      if (c.mode === "auto") stopAuto();
+      else if (!raf) raf = requestAnimationFrame(renderScroll);
+      armIdle();
     };
+    const onResize = () => { if (c.mode === "scroll" && !raf) raf = requestAnimationFrame(renderScroll); };
+    // Teclas de rolagem também tiram do automático (a página pode não ter rolado ainda)
+    const onKey = (e) => { if (["ArrowDown", "PageDown", " ", "End"].includes(e.key) && c.mode === "auto" && document.activeElement === document.body) stopAuto(); };
+    // Foco dentro do hero pausa a troca de texto, para ninguém perder o botão que está focando
+    const onFocusIn = () => { c.hold = true; };
+    const onFocusOut = (e) => { if (!hero.contains(e.relatedTarget)) c.hold = false; };
 
-    render();
+    setCanAuto(!reduce);
+    paint(scrollG());
+    armIdle();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("keydown", onKey);
+    hero.addEventListener("focusin", onFocusIn);
+    hero.addEventListener("focusout", onFocusOut);
     return () => {
+      clearTimeout(idleTimer);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("keydown", onKey);
+      hero.removeEventListener("focusin", onFocusIn);
+      hero.removeEventListener("focusout", onFocusOut);
       if (raf) cancelAnimationFrame(raf);
     };
   }, [N]);
 
+  const togglePause = () => {
+    const c = ctrl.current;
+    const next = !c.userPaused;
+    c.userPaused = next;
+    setUserPaused(next);
+    if (!next) {
+      if (c.mode === "auto") return; // estava pausado no automático: o tempo volta a correr
+      c.start?.(); // no topo, recomeça já
+      c.arm?.();
+    }
+  };
+  // Mouse sobre o texto segura a cena atual
+  const holdOn = (e) => { if (e.pointerType === "mouse") ctrl.current.hold = true; };
+  const holdOff = () => { ctrl.current.hold = false; };
+
   const goTo = (i) => {
     const hero = heroRef.current;
     if (!hero) return;
+    ctrl.current.stop?.({ keepScene: false });
     const total = hero.offsetHeight - window.innerHeight;
     const top = hero.getBoundingClientRect().top + window.scrollY; // posição real na página
     const y = top + total * ((i + LIGHT_UP + 0.05) / N);
@@ -200,8 +309,21 @@ export default function HeroScroll({ scenes = ENERLIGHT_SCENES, eyebrow = "ENGEN
         <div ref={beamRef} className={styles.beam} />
         <div className={styles.shade} />
 
-        <div className={styles.copy}>
-          <div className={styles.eyebrow}>{eyebrow}</div>
+        <div className={styles.copy} onPointerEnter={holdOn} onPointerLeave={holdOff}>
+          <div className={styles.eyebrowRow}>
+            <div className={styles.eyebrow}>{eyebrow}</div>
+            {canAuto && (
+              <button
+                type="button"
+                className={styles.autoBtn}
+                onClick={togglePause}
+                aria-label={userPaused ? "Retomar apresentação automática" : "Pausar apresentação automática"}
+                title={userPaused ? "Retomar apresentação" : "Pausar apresentação"}
+              >
+                <span aria-hidden="true">{userPaused ? "▶" : "Ⅱ"}</span>
+              </button>
+            )}
+          </div>
           <div className={styles.texts}>
             {scenes.map((s, i) => (
               <div key={s.title} className={`${styles.text} ${i === active ? styles.on : ""}`} aria-hidden={i !== active}>
