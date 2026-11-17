@@ -17,7 +17,7 @@ export const ENERLIGHT_SCENES = [
     tagTitle: "São José do Rio Preto"
   },
   {
-    image: "/images/obras/posto-chiesa.webp",
+    image: "/images/hero/posto-noite.webp",
     label: "Postos de combustíveis",
     title: "Da pista à conveniência,",
     highlight: "iluminação para cada área.",
