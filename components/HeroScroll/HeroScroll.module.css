@@ -1,0 +1,367 @@
+/* Hero com rolagem — Enerlight
+   Fontes esperadas no projeto: "Bricolage Grotesque Variable" e "Barlow Semi Condensed" */
+
+.hero {
+  --navy: #081638;
+  --navy-3: #08152b;
+  --yellow: #ffc600;
+  --amber: #f2a900;
+  --ice: #e7effc;
+  --display: "Bricolage Grotesque Variable", "Bricolage Grotesque", Arial, sans-serif;
+  --body: "Barlow Semi Condensed", Arial, sans-serif;
+  position: relative;
+  background: var(--navy-3);
+  color: #fff;
+  font-family: var(--body);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- Cenas ---------- */
+.scene {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+.bg {
+  position: absolute;
+  inset: -4%;
+  transform-origin: 60% 50%;
+  will-change: transform, filter;
+  filter: brightness(0.07) saturate(0.25);
+}
+
+/* Foto de fundo (substitui o next/image do original) */
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.beam {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  background: radial-gradient(
+    60% 90% at var(--bx, 50%) 40%,
+    rgba(255, 236, 170, 0.55),
+    rgba(255, 198, 0, 0.18) 35%,
+    transparent 70%
+  );
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(3, 14, 38, 0.92) 0%, rgba(3, 14, 38, 0.7) 32%, rgba(3, 14, 38, 0.15) 62%, transparent 80%),
+    linear-gradient(0deg, rgba(3, 14, 38, 0.85) 0%, transparent 30%);
+}
+
+/* ---------- Texto ---------- */
+.copy {
+  position: absolute;
+  z-index: 5;
+  left: clamp(24px, 5.5vw, 96px);
+  bottom: clamp(104px, 15vh, 140px);
+  width: min(760px, 86vw);
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  color: var(--ice);
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--yellow);
+}
+.texts {
+  display: grid;
+}
+.text {
+  grid-area: 1 / 1;
+  align-self: end;
+  opacity: 0;
+  transform: translateY(28px);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.text h1,
+.text .h {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(38px, min(5vw, 8.4vh), 76px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.text em {
+  display: block;
+  font-style: normal;
+  color: var(--yellow);
+}
+.text p {
+  margin: 16px 0 0;
+  max-width: 470px;
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.45;
+  color: #dbe5f5;
+}
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.btnYellow {
+  background: var(--yellow);
+  color: var(--navy);
+}
+.btnYellow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px rgba(255, 198, 0, 0.7);
+}
+.btnGhost {
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+}
+.btnGhost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.tag {
+  margin-top: 22px;
+  padding-left: 12px;
+  border-left: 3px solid var(--yellow);
+}
+.tag small {
+  display: block;
+  font-size: 12px;
+  opacity: 0.75;
+}
+.tag b {
+  font-family: var(--display);
+  font-size: 20px;
+}
+
+/* ---------- "Role para acender" ---------- */
+.intro {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 120px;
+  transform: translateX(-50%);
+  text-align: center;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.switch {
+  position: relative;
+  width: 30px;
+  height: 50px;
+  margin: 0 auto 10px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 6px;
+  height: 10px;
+  margin-left: -3px;
+  border-radius: 3px;
+  background: var(--yellow);
+  animation: wheel 1.6s ease-in-out infinite;
+}
+@keyframes wheel {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(16px); opacity: 0; }
+  100% { opacity: 0; }
+}
+.intro span {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ice);
+}
+
+/* ---------- Medidor de luz ---------- */
+.meter {
+  position: absolute;
+  z-index: 6;
+  right: clamp(24px, 4vw, 64px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.counter {
+  font-family: var(--display);
+  font-size: 13px;
+  opacity: 0.8;
+}
+.counter b {
+  font-size: 16px;
+  color: var(--yellow);
+}
+.bar {
+  position: relative;
+  width: 4px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+}
+.meterFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  background: linear-gradient(0deg, var(--amber), #fff3c2);
+  box-shadow: 0 0 18px var(--yellow);
+}
+.bulb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #333;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.bulb[data-on="true"] {
+  background: var(--yellow);
+  box-shadow: 0 0 22px 6px rgba(255, 198, 0, 0.6);
+}
+.val {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* ---------- Trilha de progresso ---------- */
+.track {
+  position: absolute;
+  z-index: 6;
+  left: clamp(24px, 5.5vw, 96px);
+  right: clamp(24px, 5.5vw, 96px);
+  bottom: 34px;
+}
+.line {
+  position: relative;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.18);
+}
+.trackFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--yellow);
+  box-shadow: 0 0 12px var(--yellow);
+}
+.points {
+  display: grid;
+  margin-top: -7px;
+}
+.pt {
+  min-height: 44px; /* área de toque mínima */
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-family: var(--body);
+  text-align: left;
+  cursor: pointer;
+}
+.pt i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--yellow);
+  background: var(--navy-3);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.pt span {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  opacity: 0.55;
+  transition: opacity 0.3s;
+}
+.ptDone i {
+  background: var(--yellow);
+}
+.ptOn i {
+  background: var(--yellow);
+  box-shadow: 0 0 0 5px rgba(255, 198, 0, 0.25), 0 0 16px var(--yellow);
+}
+.ptOn span {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .meter { display: none; }
+  .pt span { font-size: 12px; white-space: nowrap; visibility: hidden; }
+  .ptOn span { visibility: visible; }
+  /* Na metade direita da trilha, o nome cresce para a esquerda para não sair da tela */
+  .points > .pt:nth-child(n + 3) span { direction: rtl; }
+  /* Deixa espaço para o botão fixo do WhatsApp no canto inferior direito */
+  .track { right: 84px; }
+  /* "Role para acender": só o ícone, no canto direito, sem cobrir o texto */
+  .intro { left: auto; right: 24px; bottom: 112px; transform: none; }
+  .intro span { display: none; }
+  .switch { margin: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text { transition: none; }
+  .switch::after { animation: none; }
+}

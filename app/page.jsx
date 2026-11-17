@@ -1,6 +1,6 @@
 import Articles from "../components/sections/Articles";
 import Header from "../components/sections/Header";
-import Hero from "../components/sections/Hero";
+import HeroScroll from "../components/HeroScroll/HeroScroll";
 import Benefits from "../components/sections/Benefits";
 import Brands from "../components/sections/Brands";
 import Segments from "../components/sections/Segments";
@@ -17,7 +17,7 @@ import Reveal from "../components/Reveal";
 export default function Home() {
   return <>
     <a className="skip" href="#inicio">Ir para o conteúdo</a>
-    <div className="hero-shell"><Header /><main className="home-page"><Hero /><Benefits /><Brands /><Segments /><Projects /><LightingDesign /><Calculator /><Products /><Catalogs /><Articles /><About /><University /></main></div>
+    <div className="hero-shell"><Header /><main className="home-page"><HeroScroll /><Benefits /><Brands /><Segments /><Projects /><LightingDesign /><Calculator /><Products /><Catalogs /><Articles /><About /><University /></main></div>
     <Contact />
     <Reveal />
   </>;

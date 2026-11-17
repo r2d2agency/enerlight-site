@@ -1,4 +1,6 @@
 import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource/barlow-semi-condensed/latin-400.css";
+import "@fontsource/barlow-semi-condensed/latin-600.css";
 import "@fontsource/barlow-semi-condensed/latin-700.css";
 import "@fontsource/barlow-semi-condensed/latin-800.css";
 import "./globals.css";
