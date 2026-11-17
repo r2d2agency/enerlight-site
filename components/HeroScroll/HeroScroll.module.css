@@ -349,6 +349,8 @@
 
 @media (max-width: 760px) {
   .meter { display: none; }
+  /* No celular o texto ocupa quase toda a tela: sombra mais forte para ler sobre fotos claras */
+  .shade { background: linear-gradient(0deg, rgba(3, 14, 38, 0.94) 0%, rgba(3, 14, 38, 0.78) 50%, rgba(3, 14, 38, 0.45) 78%, rgba(3, 14, 38, 0.3) 100%); }
   .pt span { font-size: 12px; white-space: nowrap; visibility: hidden; }
   .ptOn span { visibility: visible; }
   /* Na metade direita da trilha, o nome cresce para a esquerda para não sair da tela */

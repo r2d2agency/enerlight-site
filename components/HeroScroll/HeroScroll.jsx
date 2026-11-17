@@ -6,7 +6,7 @@ import styles from "./HeroScroll.module.css";
 // Cenas do hero. Links apontam para rotas e seções que existem no site.
 export const ENERLIGHT_SCENES = [
   {
-    image: "/images/obras/rio-preto.webp",
+    image: "/images/hero/cidade-noite.webp",
     label: "Iluminação pública",
     title: "Mais luz para as vias",
     highlight: "e espaços da cidade.",
