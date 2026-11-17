@@ -28,7 +28,7 @@ export const ENERLIGHT_SCENES = [
     tagTitle: "Posto Chiesa JK"
   },
   {
-    image: "/images/supermercados.webp",
+    image: "/images/hero/atacado.webp",
     label: "Varejo e supermercados",
     title: "Iluminação para valorizar",
     highlight: "cada corredor.",
