@@ -39,8 +39,8 @@ export const ENERLIGHT_SCENES = [
     tagTitle: "Grandes redes de atacado"
   },
   {
-    image: "/images/obras/maracana.webp",
-    imagePosition: "center top",
+    image: "/images/hero/estadio.webp",
+    imagePosition: "center 40%",
     label: "Arenas e estádios",
     title: "Iluminação LED à altura",
     highlight: "de grandes arenas.",
