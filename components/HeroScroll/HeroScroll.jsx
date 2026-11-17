@@ -40,7 +40,7 @@ export const ENERLIGHT_SCENES = [
   },
   {
     image: "/images/hero/concessionaria.webp",
-    imagePosition: "center 60%",
+    imagePosition: "center 40%",
     label: "Concessionárias",
     title: "Showrooms que encantam,",
     highlight: "oficinas que produzem.",
