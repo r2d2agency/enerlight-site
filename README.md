@@ -36,7 +36,7 @@ docker run --rm -p 3000:3000 enerlight
 | 4 | Brands.jsx | Marcas atendidas e homologações |
 | 5 | Segments.jsx | Segmentos |
 | 6 | LightingDesign.jsx | Projeto luminotécnico |
-| 7 | Calculator.jsx | Acesso à calculadora oficial |
+| 7 | Calculator.jsx | Acesso à calculadora luminotécnica (app.enerlight.com.br) |
 | 8 | Products.jsx | Luminárias em destaque e catálogo |
 | 9 | Catalogs.jsx | Catálogos oficiais para consulta e download |
 | 10 | Projects.jsx | Portfólio de obras |
@@ -52,7 +52,7 @@ Os contatos e o catálogo foram conferidos no site institucional em https://ener
 
 ## Universidade Enerlight
 
-Defina `ENERLIGHT_EAD_URL` nas variáveis de ambiente do Easypanel com a URL HTTPS de login do EAD. A rota `/universidade` redireciona para esse endereço. Sem a variável, o visitante pode solicitar acesso pelo atendimento e abrir a central pública de treinamentos. A calculadora abre a ferramenta oficial em https://enerlight.com.br/calculadora-lumens/.
+Defina `ENERLIGHT_EAD_URL` nas variáveis de ambiente do Easypanel com a URL HTTPS de login do EAD. A rota `/universidade` redireciona para esse endereço. Sem a variável, o visitante pode solicitar acesso pelo atendimento e abrir a central pública de treinamentos. A calculadora luminotécnica abre a ferramenta oficial em https://app.enerlight.com.br/calculadora-luminotecnica.
 
 Os PDFs oficiais ficam em `public/catalogos` e as capas ficam em `public/images/catalogos`.
 

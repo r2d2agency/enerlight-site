@@ -163,7 +163,7 @@ export default function Home2() {
         <div className="h2-wrap">
           <header className="h2-head"><h2 id="h2-tools-title">Tudo para quem especifica e instala.</h2></header>
           <ul className="h2-tools">
-            <li><a href="https://enerlight.com.br/calculadora-lumens/"><strong>Calculadora de lúmens</strong><span className="h2-muted">Informe ambiente, área e altura de montagem e tenha uma estimativa inicial.</span><em>Calcular <Arrow /></em></a></li>
+            <li><a href="https://app.enerlight.com.br/calculadora-luminotecnica"><strong>Calculadora luminotécnica</strong><span className="h2-muted">Informe ambiente, área e altura de montagem e tenha uma estimativa inicial.</span><em>Calcular <Arrow /></em></a></li>
             <li id="catalogos"><div><strong>Catálogos</strong><span className="h2-muted">Especificações de todas as linhas em PDF.</span>
               <ul className="h2-catalog-list">{catalogs.map(([id, title]) => <li key={id}><a href={`/catalogos/enerlight-${id}.pdf`} target="_blank" rel="noopener">{title}<Arrow /></a></li>)}</ul></div></li>
             <li><a href="/universidade"><strong>Universidade Enerlight</strong><span className="h2-muted">Cursos, vídeos de instalação e manuais para instaladores.</span><em>Acessar <Arrow /></em></a></li>
