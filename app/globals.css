@@ -659,3 +659,25 @@ h1, h2 { font-weight: 800; letter-spacing: -.025em; line-height: .94; text-wrap:
   .lum-track > .lighting-design { position: sticky; top: 0; min-height: 100vh; display: flex; align-items: center; padding-top: calc(72px + clamp(20px, 3vw, 44px)); }
   .lum-track > .lighting-design > .wrap { width: var(--shell); grid-template-columns: .85fr 1.15fr; }
 }
+
+/* Etapas do projeto sob a animação: a etapa atual acende conforme a rolagem */
+.lum-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
+.lum-steps li { display: grid; align-content: start; gap: 4px; padding: 12px 14px; border: 1px solid #ffffff26; border-radius: 12px; color: #c6d3e8; transition: background .3s ease, border-color .3s ease, color .3s ease; }
+.lum-steps strong { color: #fff; font-size: 15px; line-height: 1.2; }
+.lum-step-n { font-family: var(--display-font); font-weight: 700; font-size: 14px; color: var(--yellow); }
+.lum-step-text { font-size: 14px; line-height: 1.35; }
+.lum-stage[data-animated="true"] .lum-steps li { opacity: .72; }
+.lum-stage[data-animated="true"] .lum-steps li[data-on="true"] { opacity: 1; background: #ffffff12; border-color: var(--yellow); }
+
+/* Projeto luminotécnico no celular: imagem e etapas ficam presas por ~1 tela de rolagem */
+@media (max-width: 900px) {
+  .lum-steps { grid-template-columns: 1fr; gap: 8px; }
+  .lum-steps li { grid-template-columns: auto 1fr; column-gap: 10px; padding: 10px 12px; }
+  .lum-step-n { grid-row: span 2; align-self: center; }
+}
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .lum-track > .lighting-design { overflow: clip; } /* "hidden" impediria o bloco de ficar preso */
+  .lum-track > .lighting-design::before { display: none; } /* a curva decorativa cruzaria as etapas */
+  .lum-pin::after { content: ""; display: block; height: 90svh; } /* pista de rolagem dentro do bloco */
+  .lum-pin > .lum-stage { position: sticky; top: max(84px, calc(50svh - 230px)); }
+}
